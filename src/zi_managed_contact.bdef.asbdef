@@ -1,0 +1,41 @@
+managed;
+strict ( 2 );
+
+define behavior for zi_managed_contact //alias <alias_name>
+implementation in class zcls_managed_contact unique
+persistent table zcontact_managed
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  create ( authorization : global );
+  update;
+  delete;
+  field ( readonly, numbering : managed ) ContactId;
+  field (readonly : create) Age;
+  field (mandatory : create) Firstname,Lastname,Email,Telephone;
+
+  //internal action
+  //by default actions are instance bound. So action button will get enabled on clicking of any lineitem .
+  //use of this(features:instance) is to control the button availability for that instance based on business logic.
+  // the logic will be implemented inside get_instance_feature method
+  action(features:instance) setStatus result[1] $self;
+
+  mapping for zcontact_managed
+    {
+      ContactId     = contact_id;
+      Firstname     = firstname;
+      Middlename    = middlename;
+      Lastname      = lastname;
+      Gender        = gender;
+      Dob           = dob;
+      Age           = age;
+      Telephone     = telephone;
+      Email         = email;
+      Active        = active;
+      Createdby     = createdby;
+      Createdat     = createdat;
+      Lastchangedby = lastchangedby;
+      Lastchangedat = lastchangedat;
+    }
+}

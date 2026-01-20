@@ -1,0 +1,5 @@
+CLASS zcls_managed_contact DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zi_managed_contact.
+ENDCLASS.
+
+CLASS zcls_managed_contact IMPLEMENTATION.
+ENDCLASS.
