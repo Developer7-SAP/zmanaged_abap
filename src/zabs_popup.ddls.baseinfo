@@ -2,15 +2,9 @@
 "BASEINFO":
 {
 "FROM":
-[
-"ZGENDER_CDS",
-"ZCONTACT_MANAGED"
-],
+[],
 "ASSOCIATED":
-[
-"ZGENDER_CDS",
-"ZI_MANAGED_CONTACT_ADD"
-],
+[],
 "BASE":
 [],
 "ANNO_REF":

@@ -1,0 +1,67 @@
+@Metadata.layer: #PARTNER
+@UI.headerInfo:{
+    typeName: 'Employee Contact Address',
+    typeNamePlural: 'Contact Address',
+    title:{
+            type: #STANDARD,
+            label: 'Address',
+            value : 'city'
+            },
+
+    description:{
+                type: #STANDARD,
+                label: 'State',
+                value :'state'
+                }
+}
+annotate entity zc_managed_contact_add
+    with 
+{
+@UI.facet: [{ 
+            id:'idContactadd',
+            purpose: #STANDARD,
+            position:10,
+            label:'Address Details',
+            type:#IDENTIFICATION_REFERENCE 
+            }]
+@UI.hidden: true
+   ContactId;
+   @UI.hidden: true
+   AddressId;
+   
+    @UI.lineItem: [{ position:10, label : 'Address 1' }]
+    @UI.identification: [{ position:10, label : 'Address 1' }]
+   Addr1;
+   
+   @UI.identification: [{ position:20, label : 'Address 2' }]
+    @UI.lineItem: [{ position:20, label : 'Address 2' }]
+   Addr2;
+   
+   @UI.identification: [{ position:30, label : 'City' }]
+    @UI.lineItem: [{ position:30, label : 'City' }]
+   City;
+   
+   @UI.identification: [{ position:40, label : 'State' }]
+    @UI.lineItem: [{ position:40, label : 'State' }]
+   State;
+   
+   @UI.identification: [{ position:50, label : 'Pin-Code' }]
+    @UI.lineItem: [{ position:50, label : 'Pin-Code' }]
+   Pincode;
+   
+   @UI.identification: [{ position:60, label : 'Created By' }]
+   Createdby;
+   
+   @UI.identification: [{ position:70, label : 'Created At' }]
+   Createdat;
+   
+   @UI.identification: [{ position:80, label : 'Last Changed By' }]
+   Lastchangedby;
+   
+   @UI.identification: [{ position:90, label : 'Last Changed At' }]
+   Lastchangedat;
+   
+
+   
+    
+}

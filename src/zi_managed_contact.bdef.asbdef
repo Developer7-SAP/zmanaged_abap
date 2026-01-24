@@ -1,25 +1,54 @@
 managed;
 strict ( 2 );
-
+//with draft ;
 define behavior for zi_managed_contact //alias <alias_name>
 implementation in class zcls_managed_contact unique
 persistent table zcontact_managed
-lock master
+//draft table zcontact_draft
+lock master //total etag Lastchangedat
 authorization master ( instance )
-//etag master <field_name>
+etag master Lastchangedat
+
 {
   create ( authorization : global );
-  update;
-  delete;
+  update ( features : instance ,precheck);
+  delete(precheck);
+
+// diff between precheck and validation.
+/*prechecks doesnot even let the data to reach the transactional buffer but validation allows the data to reach the tx buffer
+prechecks are mainly used with create/update/delete functionality,whereas validations are used on field level*/
+  association _address { create; }//with draft; }
+
+
+  //draft action Activate optimized;
+ // draft action Edit;
+ // draft action Resume;
+  //draft action Discard;
+//  draft determine action Prepare;
+
   field ( readonly, numbering : managed ) ContactId;
-  field (readonly : create) Age;
-  field (mandatory : create) Firstname,Lastname,Email,Telephone;
+  field ( readonly : create ) Age;
+  //field ( mandatory : create ) Firstname, Lastname, Email, Telephone;
+
+
 
   //internal action
   //by default actions are instance bound. So action button will get enabled on clicking of any lineitem .
   //use of this(features:instance) is to control the button availability for that instance based on business logic.
   // the logic will be implemented inside get_instance_feature method
-  action(features:instance) setStatus result[1] $self;
+  action ( features : instance ) setStatus result [1] $self;
+
+  field ( readonly : update ) Firstname, Middlename, Lastname;
+
+  field ( readonly ) Lastchangedat, Lastchangedby, Createdby, Createdat;
+
+  factory action ( features : instance ) copyContact [1];
+
+
+  determination calculateAge on modify { field Dob; create; }
+  validation ValidatePhone on save { field Telephone; create; update; }
+
+  static action withPopup parameter zabs_popup;
 
   mapping for zcontact_managed
     {
@@ -38,4 +67,42 @@ authorization master ( instance )
       Lastchangedby = lastchangedby;
       Lastchangedat = lastchangedat;
     }
+}
+
+define behavior for zi_managed_contact_add
+implementation in class zcls_managed_contact_add unique
+persistent table zcontact_add
+//draft table zadd_draft
+lock dependent by _contact
+authorization dependent by _contact
+{
+  update;
+  delete;
+  association _contact;//{with draft;}
+
+  field ( readonly ) ContactId;
+  field ( readonly, numbering : managed ) AddressId;
+  //field ( mandatory : create ) city;
+  field (readonly) Createdat, Createdby, Lastchangedat, Lastchangedby;
+  field (readonly:update) Addr1;
+
+  validation validateaddresson on save { field pincode; create; update;}
+
+
+  mapping for zcontact_add
+    {
+      ContactId     = contact_id;
+      AddressId     = address_id;
+      Addr1         = addr1;
+      Addr2         = addr2;
+      City          = city;
+      State         = state;
+      Pincode       = pincode;
+      Createdby     = createdby;
+      Createdat     = createdat;
+      Lastchangedby = lastchangedby;
+      Lastchangedat = lastchangedat;
+    }
+
+
 }

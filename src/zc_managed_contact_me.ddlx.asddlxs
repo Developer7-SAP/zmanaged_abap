@@ -21,7 +21,16 @@ annotate entity ZC_MANAGED_CONTACT with
             id:'idContact',
             purpose: #STANDARD,
             position:10,
+            label:'Contact Details',
             type:#IDENTIFICATION_REFERENCE 
+            },
+            {
+            id:'idContactadd',
+            purpose: #STANDARD,
+            position:20,
+            label:'Address Details',
+            type:#LINEITEM_REFERENCE ,
+            targetElement: '_address'
             }]
 
   
@@ -29,9 +38,13 @@ annotate entity ZC_MANAGED_CONTACT with
   ContactId;
 
   @UI.lineItem: [{ position:20 ,label : 'First Name'},
-                 { type: #FOR_ACTION ,dataAction: 'setStatus',label: 'Change Status'}]
+                 { type: #FOR_ACTION ,dataAction: 'setStatus',label: 'Change Status'},
+                 { type: #FOR_ACTION ,dataAction: 'copyContact',label: 'Copy Contact'}
+                 ]
   @UI.identification: [{ position:20 ,label : 'First Name' },
-                       { type: #FOR_ACTION ,dataAction: 'setStatus',label: 'Change Status'}]
+                       { type: #FOR_ACTION ,dataAction: 'setStatus',label: 'Change Status'},
+                       { type: #FOR_ACTION ,dataAction: 'copyContact',label: 'Copy Contact'},
+                       { type: #FOR_ACTION ,dataAction: 'withPopup',label: 'Click for Popup'}]
   @Search.defaultSearchElement: true
   @Search.fuzzinessThreshold: 0.7
   Firstname;

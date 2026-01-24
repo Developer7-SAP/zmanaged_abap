@@ -14,6 +14,30 @@
      <MSGNR>001</MSGNR>
      <TEXT>Status has been set successfully</TEXT>
     </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZMSG_CONTACT</ARBGB>
+     <MSGNR>002</MSGNR>
+     <TEXT>Please Maintain Date of Birth</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZMSG_CONTACT</ARBGB>
+     <MSGNR>003</MSGNR>
+     <TEXT>Please enter correct Phone number</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZMSG_CONTACT</ARBGB>
+     <MSGNR>004</MSGNR>
+     <TEXT>Pincode length should be of 6 characters</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZMSG_CONTACT</ARBGB>
+     <MSGNR>005</MSGNR>
+     <TEXT>Email-Id cannot be blank</TEXT>
+    </T100>
    </T100>
   </asx:values>
  </asx:abap>

@@ -4,6 +4,7 @@
 define root view entity zi_managed_contact as select from zcontact_managed
 association[1..*] to zgender_cds as _gender
 on _gender.genderCode = $projection.Gender
+composition[1..*] of zi_managed_contact_add as _address
 {
     
    key contact_id as ContactId,
@@ -21,5 +22,6 @@ on _gender.genderCode = $projection.Gender
    createdat as Createdat,
    lastchangedby as Lastchangedby,
    lastchangedat as Lastchangedat,
-   _gender
+   _gender,
+   _address
 }

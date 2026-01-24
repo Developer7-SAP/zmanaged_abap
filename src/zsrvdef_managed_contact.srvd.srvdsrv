@@ -1,4 +1,5 @@
 @EndUserText.label: 'service definition of managed contact'
 define service Zsrvdef_managed_contact {
   expose ZC_MANAGED_CONTACT;
+  expose zc_managed_contact_add;
 }

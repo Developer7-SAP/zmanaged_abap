@@ -1,10 +1,30 @@
 projection;
 strict ( 2 );
-
+//use draft;
 define behavior for ZC_MANAGED_CONTACT alias Contact
 {
   use create;
   use update;
   use delete;
   use action setStatus;
+  use action copyContact;
+  use action withPopup;
+  use association _address{create;}//with draft;}
+
+  //use action Activate;
+ // use action edit;
+  //use action resume;
+ // use action discard;
+ // use action Prepare;
+
+
+}
+
+define behavior for zc_managed_contact_add alias address
+{
+
+use update;
+use delete;
+use association _contact;
+
 }

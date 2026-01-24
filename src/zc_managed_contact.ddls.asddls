@@ -22,5 +22,7 @@ define root view entity ZC_MANAGED_CONTACT
       Createdby,
       Createdat,
       Lastchangedby,
-      Lastchangedat
+      Lastchangedat,
+      _gender,
+      _address:redirected to composition child zc_managed_contact_add
 }
