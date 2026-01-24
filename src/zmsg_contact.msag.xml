@@ -38,6 +38,12 @@
      <MSGNR>005</MSGNR>
      <TEXT>Email-Id cannot be blank</TEXT>
     </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZMSG_CONTACT</ARBGB>
+     <MSGNR>006</MSGNR>
+     <TEXT>If no middle name available please input NA</TEXT>
+    </T100>
    </T100>
   </asx:values>
  </asx:abap>

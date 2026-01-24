@@ -218,6 +218,16 @@ CLASS lhc_zi_managed_contact IMPLEMENTATION.
               )
           ) tO  reported-zi_managed_contact.
    endif.
+     if <fs_entities>-%control-middlename = if_abap_behv=>mk-on.
+   append value #( %tky = <fs_entities>-%tky  ) to failed-zi_managed_contact.
+   append value #( %tky = <fs_entities>-%tky
+                   %msg = new_message(
+                   id = 'ZMSG_CONTACT'
+                   number = '006'
+                  severity = if_abap_behv_message=>severity-error
+              )
+          ) tO  reported-zi_managed_contact.
+   endif.
   endloop.
   ENDMETHOD.
 
